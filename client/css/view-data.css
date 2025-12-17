@@ -92,3 +92,56 @@ button:hover, .delete-button:hover {
 .center { text-align: center; }
 .center-nav { justify-content: center; }
 .center-card { max-width: 1050px; }
+
+
+/* Harry Potter style controls + editable table */
+.controls{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-bottom: 12px;
+}
+
+.control{
+  min-width: 180px;
+}
+
+.control label{
+  display:block;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.control input, .control select{
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(0,0,0,0.25);
+  color:#fff;
+}
+
+.control.buttons{
+  min-width: 220px;
+}
+
+.row-buttons{
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  align-items:center;
+}
+
+.cell{
+  width: 100%;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(0,0,0,0.18);
+  color:#fff;
+}
+
+.table-wrap{
+  overflow-x:auto;
+}

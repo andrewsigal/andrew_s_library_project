@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="viewApp">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VIEW DATA</title>
   <link rel="stylesheet" href="css/view-data.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 </head>
-<body>
+<body ng-controller="ViewController">
+
   <header>
     <div class="page-title center">VIEW BOOK DATA</div>
     <nav class="center-nav">
@@ -18,19 +20,80 @@
   </header>
 
   <main class="card center-card">
-    <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Author</th>
-          <th>Publisher</th>
-          <th>Year Published</th>
-          <th>ISBN</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody id="tableBody"></tbody>
-    </table>
+
+    <div class="controls">
+      <div class="control">
+        <label>Type Field</label>
+        <select ng-model="typeField">
+          <option value="">ALL</option>
+          <option value="author">Author</option>
+          <option value="publisher">Publisher</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <label>Type Value</label>
+        <input type="text" ng-model="typeValue" placeholder="Enter author or publisher">
+      </div>
+
+      <div class="control">
+        <label>Sort By</label>
+        <select ng-model="sortField" ng-change="refresh()">
+          <option value="">(none)</option>
+          <option value="title">Title</option>
+          <option value="author">Author</option>
+          <option value="publisher">Publisher</option>
+          <option value="yearPublished">Year Published</option>
+          <option value="isbn">ISBN</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <label>Sort Dir</label>
+        <select ng-model="sortDir" ng-change="refresh()">
+          <option value="asc">ASC</option>
+          <option value="desc">DESC</option>
+        </select>
+      </div>
+
+      <div class="control buttons">
+        <label>&nbsp;</label>
+        <button type="button" ng-click="loadAll()">LOAD ALL</button>
+        <button type="button" ng-click="loadByType()">GET BY TYPE</button>
+      </div>
+    </div>
+
+    <p class="small center" ng-if="loading">Loading...</p>
+    <p class="small center" ng-if="status">{{status}}</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publisher</th>
+            <th>Year Published</th>
+            <th>ISBN</th>
+            <th style="width:210px;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="b in books track by b.id">
+            <td><input class="cell" type="text" ng-model="b.title"></td>
+            <td><input class="cell" type="text" ng-model="b.author"></td>
+            <td><input class="cell" type="text" ng-model="b.publisher"></td>
+            <td><input class="cell" type="number" ng-model="b.yearPublished"></td>
+            <td><input class="cell" type="text" ng-model="b.isbn"></td>
+            <td class="row-buttons">
+              <button type="button" ng-click="update(b)">UPDATE</button>
+              <button type="button" class="delete-button" ng-click="del(b.id)">DELETE</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
   </main>
 
   <script src="js/view-data.js"></script>

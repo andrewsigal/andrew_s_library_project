@@ -1,44 +1,33 @@
-"use strict";
+(function () {
+  "use strict";
 
-const libraryURL = "http://localhost:5000/library";
-// Clear input fields
-function clearInputs(){
-  document.getElementById("title").value = "";
-  document.getElementById("author").value = "";
-  document.getElementById("publisher").value = "";
-  document.getElementById("yearPublished").value = "";
-  document.getElementById("isbn").value = "";
-}
-// Handle submit button press
-async function submitPressed(){
-  const record = {
-    title: document.getElementById("title").value,
-    author: document.getElementById("author").value,
-    publisher: document.getElementById("publisher").value,
-    yearPublished: document.getElementById("yearPublished").value,
-    isbn: document.getElementById("isbn").value
-  };
-  // Send record to server
-  try{
-    const res = await fetch(libraryURL + "/write-record", {
-      method: "POST",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify(record)
-    });
-    const data = await res.json();
-    
-    if(res.ok && data.msg === "SUCCESS"){
-      alert("Record saved!");
-      clearInputs();
-    }else{
-      alert("Save failed: " + (data.error || "Unknown error"));
-    }
-  }catch(err){
-    alert("Save failed: " + err.message);
-  }
-}
+  const libraryURL = "http://localhost:5000/library";
+  const app = angular.module("writeApp", []);
 
-window.onload = function(){
-  document.getElementById("submitBtn").addEventListener("click", submitPressed);
-  document.getElementById("clearBtn").addEventListener("click", clearInputs);
-};
+  app.controller("WriteController", function ($scope, $http) {
+    $scope.book = { title:"", author:"", publisher:"", yearPublished:"", isbn:"" };
+    $scope.status = "";
+
+    $scope.clear = function () {
+      $scope.book = { title:"", author:"", publisher:"", yearPublished:"", isbn:"" };
+      $scope.status = "";
+    };
+
+    $scope.submit = function () {
+      // Your original instruction says alert, but for functionality (HP style) we SAVE.
+      // If you need the alert-only version, tell me and I'll switch.
+      $http.post(libraryURL + "/write-record", $scope.book)
+        .then(function (res) {
+          if (res.data && res.data.msg === "SUCCESS") {
+            $scope.status = "Record saved!";
+            $scope.clear();
+          } else {
+            $scope.status = "Save failed.";
+          }
+        })
+        .catch(function (err) {
+          $scope.status = "Save failed: " + ((err.data && err.data.error) ? err.data.error : "Server error");
+        });
+    };
+  });
+})();

@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="writeApp">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ENTER DATA</title>
   <link rel="stylesheet" href="css/write-data.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 </head>
-<body>
+<body ng-controller="WriteController">
+
   <header>
     <div class="page-title center">ENTER BOOK DATA</div>
     <nav class="center-nav">
@@ -18,27 +20,29 @@
   </header>
 
   <main class="card center-card">
-    <form>
+    <form novalidate>
       <label for="title">Title</label>
-      <input id="title" type="text"><br>
+      <input id="title" type="text" ng-model="book.title"><br>
 
       <label for="author">Author</label>
-      <input id="author" type="text"><br>
+      <input id="author" type="text" ng-model="book.author"><br>
 
       <label for="publisher">Publisher</label>
-      <input id="publisher" type="text"><br>
+      <input id="publisher" type="text" ng-model="book.publisher"><br>
 
       <label for="yearPublished">Year Published</label>
-      <input id="yearPublished" type="number"><br>
+      <input id="yearPublished" type="number" ng-model="book.yearPublished"><br>
 
       <label for="isbn">ISBN</label>
-      <input id="isbn" type="text"><br>
+      <input id="isbn" type="text" ng-model="book.isbn"><br>
 
       <div class="actions">
-        <button type="button" id="submitBtn">Submit</button>
-        <button type="button" id="clearBtn">Clear</button>
+        <button type="button" ng-click="submit()">Submit</button>
+        <button type="button" ng-click="clear()">Clear</button>
       </div>
     </form>
+
+    <p class="small center" ng-if="status">{{status}}</p>
   </main>
 
   <script src="js/write-data.js"></script>
