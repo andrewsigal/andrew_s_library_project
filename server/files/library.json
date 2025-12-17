@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "Full Stack Web Development",
+    "author": "Edwin R. Torres",
+    "publisher": "Edwin R. Torres",
+    "yearPublished": 2020,
+    "isbn": "9798678487225"
+  },
+  {
+    "id": 2,
+    "title": "Of Mice And Men",
+    "author": "John Steinbeck",
+    "publisher": "Covici Friede",
+    "yearPublished": 1937,
+    "isbn": "12345-9876-12"
+  },
+  {
+    "id": 3,
+    "title": "Little Women",
+    "author": "Louisa May Alcott",
+    "publisher": "Roberts Brothers",
+    "yearPublished": 1869,
+    "isbn": "8765-88-931"
+  },
+  {
+    "id": 4,
+    "title": "Introduction to Java",
+    "author": "Y. Daniel Lang",
+    "publisher": "Pearson",
+    "yearPublished": 2019,
+    "isbn": "978-0-13-6519961"
+  },
+  {
+    "id": 5,
+    "title": "Charlotte's Web",
+    "author": "E. B. White",
+    "publisher": "Harper & Brothers",
+    "yearPublished": 1952,
+    "isbn": "9780062658753"
+  }
+]

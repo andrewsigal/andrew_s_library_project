@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="browseApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BROWSE DATA</title>
+  <link rel="stylesheet" href="css/browse-data.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body ng-controller="BrowseController">
+
+  <header>
+    <div class="page-title center">BROWSE DATA</div>
+    <nav class="center-nav">
+      <a href="library.html">HOME</a>
+      <a href="write-data.html">ENTER DATA</a>
+      <a href="view-data.html">VIEW DATA</a>
+      <a href="browse-data.html">BROWSE DATA</a>
+    </nav>
+  </header>
+
+  <main class="card center-card">
+    <h2 style="margin-top:0;text-align:center;">Search for a Book</h2>
+
+    <div class="search-grid">
+      <div>
+        <label>Title</label>
+        <input type="text" ng-model="query.title" placeholder="Search by title">
+      </div>
+      <div>
+        <label>Author</label>
+        <input type="text" ng-model="query.author" placeholder="Search by author">
+      </div>
+      <div>
+        <label>Publisher</label>
+        <input type="text" ng-model="query.publisher" placeholder="Search by publisher">
+      </div>
+      <div>
+        <label>Year Published</label>
+        <input type="text" ng-model="query.yearPublished" placeholder="Search by year">
+      </div>
+      <div>
+        <label>ISBN</label>
+        <input type="text" ng-model="query.isbn" placeholder="Search by ISBN">
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="button" ng-click="clear()">CLEAR</button>
+    </div>
+
+    <p class="small center" ng-if="loading">Loading...</p>
+    <p class="small center" ng-if="error">{{error}}</p>
+
+    <div class="results">
+      <div class="record" ng-repeat="b in filtered = (books | filter:matchesAll)">
+        <div class="record-title">{{b.title}}</div>
+        <div><b>Author:</b> {{b.author}}</div>
+        <div><b>Publisher:</b> {{b.publisher}}</div>
+        <div><b>Year Published:</b> {{b.yearPublished}}</div>
+        <div><b>ISBN:</b> {{b.isbn}}</div>
+      </div>
+
+      <p class="small center" ng-if="filtered.length === 0 && !loading">No matching records.</p>
+    </div>
+  </main>
+
+  <script src="js/browse-data.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ENTER DATA</title>
+  <link rel="stylesheet" href="css/write-data.css">
+</head>
+<body>
+  <header>
+    <div class="page-title center">ENTER BOOK DATA</div>
+    <nav class="center-nav">
+      <a href="library.html">HOME</a>
+      <a href="write-data.html">ENTER DATA</a>
+      <a href="view-data.html">VIEW DATA</a>
+      <a href="browse-data.html">BROWSE DATA</a>
+    </nav>
+  </header>
+
+  <main class="card center-card">
+    <form>
+      <label for="title">Title</label>
+      <input id="title" type="text"><br>
+
+      <label for="author">Author</label>
+      <input id="author" type="text"><br>
+
+      <label for="publisher">Publisher</label>
+      <input id="publisher" type="text"><br>
+
+      <label for="yearPublished">Year Published</label>
+      <input id="yearPublished" type="number"><br>
+
+      <label for="isbn">ISBN</label>
+      <input id="isbn" type="text"><br>
+
+      <div class="actions">
+        <button type="button" id="submitBtn">Submit</button>
+        <button type="button" id="clearBtn">Clear</button>
+      </div>
+    </form>
+  </main>
+
+  <script src="js/write-data.js"></script>
+</body>
+</html>
